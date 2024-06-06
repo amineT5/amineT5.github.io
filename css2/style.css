@@ -40,7 +40,150 @@
   --z-tooltip: 10;
   --z-fixed: 100;
 }
+      .popup {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        top: 0;
+        left: 0;
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
+        transition: all 0.3s ease-in-out;
+        color: #706f79;
+      }
+      .popup__body {
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 10px 50px;
+        transition: all 0.3s ease-in-out;
+      }
+      .popup__content {
+        background-color: #dfdfe2;
+        max-width: 650px;
+        width: 450px;
+        position: relative;
+        transition: all 0.3s ease-in-out;
+        border-radius: 10px;
+      }
+      .popup__close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 24px;
+        color: var(--white);
+        z-index: 101;
+        text-decoration: none;
+      }
+      .popup__form {
+        display: block;
+        border-radius: 10px;
+        padding: 50px 30px;
+        position: relative;
+        text-align: center;
+      }
+      @media (max-width: 450px) {
+        .popup__form {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+      .popup__form h2 {
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 1.22;
+        margin-bottom: 20px;
+      }
+      @media (max-width: 450px) {
+        .popup__form h2 {
+          font-size: 20px;
+        }
+      }
+      .popup__form p {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1.12;
+        margin-bottom: 30px;
+        color: #706f79;
+      }
+      @media (max-width: 450px) {
+        .popup__form p {
+          margin-bottom: calc(20px + 10 * (100vw - 320px) / 540);
+          font-size: 14px;
+        }
+      }
+      .popup__input {
+        display: block;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 0 auto 10px;
+        font-size: 18px;
+        width: 100%;
+      }
+      .popup__textarea {
+        min-height: 100px;
+        background: #535353;
+        border-radius: 10px;
+        padding: 10px;
+        color: var(--white);
+        font-size: 18px;
+        margin-bottom: 20px;
+        resize: none;
+        width: 100%;
+      }
+      .popup__btn {
+        margin-top: 30px;
+        white-space: nowrap;
+        padding: 15px 50px;
+        font-size: 24px;
+      }
+      .popup.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      /* Add these styles within the <style> tag */
+.popup__btn {
+  background-color: blue;  /* Set the initial button color to blue */
+  color: white;  /* Set the text color to white */
+  margin-top: 30px;
+  white-space: nowrap;
+  padding: 15px 50px;
+  font-size: 24px;
+  border: none;  /* Remove default border */
+  border-radius: 10px;
+  cursor: pointer;  /* Change cursor to pointer to indicate it's clickable */
+  transition: background-color 0.3s ease-in-out;  /* Smooth transition for color change */
+}
 
+.popup__btn:hover {
+  background-color: cyan;  /* Change button color to cyan on hover */
+  color: black;  /* Optionally change text color on hover */
+}
+/* Add these styles within the <style> tag */
+
+/* Style for the "commander un service" button */
+.footer__btn {
+  display: inline-block;  /* Display as inline-block for proper padding and margin */
+  background-color:#14c1dc;  /* Set background color to red */
+  color: white;  /* Set text color to white */
+  padding: 10px 20px;  /* Add padding for a button-like appearance */
+  text-align: center;  /* Center the text */
+  border-radius: 5px;  /* Round the corners */
+  text-decoration: none;  /* Remove underline */
+  font-size: 18px;  /* Set a readable font size */
+  transition: background-color 0.3s ease-in-out;  /* Smooth transition for hover effect */
+}
+
+.footer__btn:hover {
+  background-color: rgb(30, 0, 139);  /* Change to a darker red on hover */
+  color: white;  /* Ensure text color remains white on hover */
+  cursor: pointer;  /* Change cursor to pointer on hover */
+}
 .favicon {
   width: 32px; /* Set the width */
   height: auto; /* Maintain aspect ratio */
