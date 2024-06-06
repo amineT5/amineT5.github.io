@@ -78,3 +78,79 @@ sr.reveal(
     .footer_content`, {
         interval: 200
 })
+ document.addEventListener("DOMContentLoaded", function() {
+        const popupLinks = document.querySelectorAll('.popup-link');
+        const closePopupIcons = document.querySelectorAll('.close-popup');
+        const body = document.querySelector('body');
+        let unlock = true;
+        const timeout = 300;
+
+        if (popupLinks.length > 0) {
+          popupLinks.forEach(link => {
+            link.addEventListener("click", function(e) {
+              e.preventDefault();
+              const popupId = link.getAttribute('href').replace('#', '');
+              const currentPopup = document.getElementById(popupId);
+              if (currentPopup) {
+                popupOpen(currentPopup);
+              }
+            });
+          });
+        }
+
+        if (closePopupIcons.length > 0) {
+          closePopupIcons.forEach(icon => {
+            icon.addEventListener("click", function(e) {
+              e.preventDefault();
+              popupClose(icon.closest('.popup'));
+            });
+          });
+        }
+
+        function popupOpen(currentPopup) {
+          if (currentPopup && unlock) {
+            const activePopup = document.querySelector('.popup.open');
+            if (activePopup) {
+              popupClose(activePopup, false);
+            } else {
+              bodyLock();
+            }
+            currentPopup.classList.add('open');
+            currentPopup.addEventListener("click", function(e) {
+              if (!e.target.closest('.popup__content')) {
+                popupClose(e.target.closest('.popup'));
+              }
+            });
+          }
+        }
+
+        function popupClose(activePopup, doUnlock = true) {
+          if (unlock) {
+            activePopup.classList.remove('open');
+            if (doUnlock) {
+              bodyUnlock();
+            }
+          }
+        }
+
+        function bodyLock() {
+          const lockPaddingValue = window.innerWidth - document.querySelector('.popup').offsetWidth + 'px';
+          body.style.paddingRight = lockPaddingValue;
+          body.classList.add('lock');
+          unlock = false;
+          setTimeout(function() {
+            unlock = true;
+          }, timeout);
+        }
+
+        function bodyUnlock() {
+          setTimeout(function() {
+            body.style.paddingRight = '0px';
+            body.classList.remove('lock');
+            unlock = false;
+            setTimeout(function() {
+              unlock = true;
+            }, timeout);
+          }, timeout);
+        }
+      });
